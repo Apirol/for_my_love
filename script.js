@@ -46,27 +46,25 @@ function handleNoClick() {
 
 // Функция для нажатия "Да" — финальный экран
 function handleYes() {
-    // Полностью очищаем body и создаём новый полноэкранный блок
+    // Полностью очищаем body
     document.body.innerHTML = '';
 
-    const finalScreen = document.createElement('div');
-    finalScreen.id = 'finalScreen';
-    
-    // Стили прямо через JS (можно и через CSS, если хочешь)
-    finalScreen.style.position = 'fixed';
-    finalScreen.style.top = '0';
-    finalScreen.style.left = '0';
-    finalScreen.style.width = '100vw';
-    finalScreen.style.height = '100vh';
-    finalScreen.style.backgroundImage = 'url("images/us.png")';// ← замени на своё фото!
-    finalScreen.style.backgroundSize = 'cover';
-    finalScreen.style.backgroundPosition = 'center';
-    finalScreen.style.display = 'flex';
-    finalScreen.style.alignItems = 'center';
-    finalScreen.style.justifyContent = 'center';
-    finalScreen.style.flexDirection = 'column';
-    finalScreen.style.zIndex = '9999';
+    // Контейнер с прокруткой
+    const finalContainer = document.createElement('div');
+    finalContainer.style.position = 'fixed';
+    finalContainer.style.top = '0';
+    finalContainer.style.left = '0';
+    finalContainer.style.width = '100vw';
+    finalContainer.style.height = '100vh';
+    finalContainer.style.overflow = 'auto';   // Включаем скролл
+    finalContainer.style.backgroundColor = '#000'; // фон, если фото не загрузится
+    finalContainer.style.textAlign = 'center';
 
+    // Текст (остаётся вверху, не прокручивается вместе с фото? 
+    // В этом варианте текст тоже будет прокручиваться, но мы сделаем его сверху и он уедет, если фото большое.
+    // Чтобы текст был всегда виден, можно добавить отдельный фиксированный блок, но тогда он перекроет фото.
+    // Проще: пусть текст тоже прокручивается, но будет крупным и заметным.
+    
     const loveText = document.createElement('h1');
     loveText.textContent = 'Я ТЕБЯ ЛЮБЛЮ';
     loveText.style.color = 'white';
@@ -76,8 +74,25 @@ function handleYes() {
     loveText.style.padding = '20px 40px';
     loveText.style.borderRadius = '50px';
     loveText.style.fontFamily = 'Arial, sans-serif';
-    loveText.style.textAlign = 'center';
+    loveText.style.margin = '30px auto';
+    loveText.style.display = 'inline-block';
+    loveText.style.position = 'relative'; // чтобы не перекрывать скролл
+    loveText.style.zIndex = '10';
 
-    finalScreen.appendChild(loveText);
-    document.body.appendChild(finalScreen);
+    // Фото
+    const img = document.createElement('img');
+    img.src = 'images/us.png'; // ВНИМАНИЕ: проверь имя файла! Может быть us.jpg
+    img.alt = 'Наше фото';
+    img.style.maxWidth = '100%';
+    img.style.width = 'auto';
+    img.style.height = 'auto';
+    img.style.display = 'block';
+    img.style.margin = '0 auto 30px'; // отступ снизу
+    img.style.borderRadius = '10px';
+    img.style.boxShadow = '0 0 20px rgba(255,255,255,0.3)';
+
+    // Собираем
+    finalContainer.appendChild(loveText);
+    finalContainer.appendChild(img);
+    document.body.appendChild(finalContainer);
 }
