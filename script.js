@@ -16,7 +16,7 @@ const noMessages = [
 
 // Массив с твоими 5 картинками (замени пути на свои!)
 const memeImages = [
-    'images/1.jpg',
+    'images/1.jpeg',
     'images/2.jpg',
     'images/3.jpg',
     'images/4.jpg',
