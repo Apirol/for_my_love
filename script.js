@@ -58,7 +58,7 @@ function handleYes() {
     finalScreen.style.left = '0';
     finalScreen.style.width = '100vw';
     finalScreen.style.height = '100vh';
-    finalScreen.style.backgroundImage = 'url("images/us.jpg")'; // ← замени на своё фото!
+    finalScreen.style.backgroundImage = 'url("images/us.png")'; // ← замени на своё фото!
     finalScreen.style.backgroundSize = 'cover';
     finalScreen.style.backgroundPosition = 'center';
     finalScreen.style.display = 'flex';
